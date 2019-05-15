@@ -81,7 +81,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'AccountCtrl'
       }
     }
-  });
+  })
+  .state('tab.infografia', {
+    url: '/infografia',
+    views: {
+      'tab-infografia': {
+        templateUrl: 'templates/tab-infografia.html',
+        controller: 'InfografiaCtrl'
+      }
+    }
+  })
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
