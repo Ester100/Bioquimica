@@ -3,14 +3,27 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope) {})
 
 .controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+  (function(){
+  
+  // rotation via mousemove
+  var cont = document.querySelector('.dna');
+  document.addEventListener('mousemove', updRotation, false);
+  function updRotation(e){
+    cont.style.webkitTransform = 'rotateY(' + e.x / 5 + 'deg) rotateZ(-' + e.y / 5 + 'deg)';   
+    cont.style.transform = 'rotateY(' + e.x / 5 + 'deg) rotateZ(-' + e.y / 5 + 'deg)';   
+  }
 
+  // light fx via Photon.js
+  light = new Photon.Light();
+    shadeAmount = .6;
+    tintAmount = .7;
+    coverflowFaces = [];
+    cubeFaces = [];
+    diamondFaces = [];
+    dna = new Photon.FaceGroup($('.dna')[0], $('.dna .protein'), 1.5, .2, true);
+  dna.render(light, true);
+  
+})();
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
     Chats.remove(chat);
